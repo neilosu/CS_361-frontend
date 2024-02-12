@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #backButton { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Today's Vocabulary</h2>
+    <div id="vocabData"></div>
+    <button id="backButton" onclick="window.history.back();">Back to Main Page</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const vocabData = JSON.parse(localStorage.getItem('vocabData') || '{}');
+            const container = document.getElementById('vocabData');
+            // Assuming vocabData.vocabularies contains the list of vocabularies for the day
+            vocabData.vocabularies.forEach(item => {
+                const div = document.createElement('div');
+                div.innerHTML = `<strong>${item.word}:</strong> ${item.definition}`; // Display word and definition
+                container.appendChild(div);
+            });
+        });
+    </script>
+</body>
+</html>
